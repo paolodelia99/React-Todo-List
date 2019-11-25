@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import Todos from "./Components/Todos";
+import AddForm from "./Components/AddForm";
 import './App.css';
 
 class App extends Component{
@@ -17,12 +18,27 @@ class App extends Component{
       this.setState({
           todos
       })
-  }
+  };
+
+  addTodo = (todo)=>{
+    todo.id = Math.random();
+    let todos = [...this.state.todos, todo];
+    this.setState({
+        todos: todos
+    })
+  };
 
   render() {
     return (
         <div className="App">
           <header><h1>Best Todo App Ever</h1></header>
+            <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-6">
+                    <AddForm addTodo={this.addTodo}/>
+                </div>
+                <div className="col-md-3"></div>
+            </div>
             <div className="row todos-container">
                 <div className="col-md-3"></div>
                 <div className="col-md-6 big-container">
